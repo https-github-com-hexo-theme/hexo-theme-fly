@@ -1,0 +1,20 @@
+//- .tag-cloud-list.is-center
+//-   !=cloudTags({source: site.tags, orderby: page.orderby || 'random', order: page.order || 1, minfontsize: 1.2, maxfontsize: 2.1, limit: 0, unit: 'em'})
+.tag-cloud-list.is-center
+  .card-tag-cloud
+    a.ark-tags-box(href='/tags/%E8%BD%AC%E8%BD%BD%E5%86%85%E5%AE%B9/', data-pjax-state)
+      span.ark-tags-name-box
+        span.ark-tags-name 📁转载内容
+      span.ark-tags-length(style='--percentage:calc(7/39 * 100%)') 7
+    a.ark-tags-box(href='/tags/JAVA/', data-pjax-state)
+      span.ark-tags-name-box
+        span.ark-tags-name 💠JAVA开发
+      span.ark-tags-length(style='--percentage:calc(5/39 * 100%)') 5
+    a.ark-tags-box(href='/tags/%E5%86%99%E4%BD%9C/', data-pjax-state)
+      span.ark-tags-name-box
+        span.ark-tags-name 💥写作
+      span.ark-tags-length(style='--percentage:calc(1/39 * 100%)') 1
+    a.ark-tags-box(href='/tags/%E6%95%99%E7%A8%8B/', data-pjax-state)
+      span.ark-tags-name-box
+        span.ark-tags-name 🃏教程
+      span.ark-tags-length(style='--percentage:calc(2/39 * 100%)') 2

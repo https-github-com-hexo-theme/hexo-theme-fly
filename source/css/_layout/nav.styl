@@ -1,0 +1,239 @@
+//default color:
+:root
+  --nav-bar-background-color: rgba(249, 249, 249, 0.79)
+  --nav-font-color: #494748
+  --nav-font-hover-color: #494748
+  --nav-button-color: transparent
+  --nav-active-button-color: rgba(40, 185, 230, 0.65)
+  --nav-menu-background-color: rgba(160,160,160,0.7)
+  --nav-menu-item-background-color: rgba(249, 249, 249,0.8)
+  --nav-menu-item-font-color: #494748
+  --nav-menu-item-hover-background-color: #eda60c
+  --nav-menu-item-hover-font-color: #f9f9f9
+[data-theme="dark"]
+  --nav-bar-background-color: rgba(66,66,66,0.8)
+  --nav-font-color: #f9f9f9
+  --nav-font-hover-color: #f9f9f9
+  --nav-button-color: rgba(20, 97, 227, 0.65)
+  --nav-active-button-color: rgba(249, 246, 14, 0.71)
+  --nav-menu-background-color: rgb(66,66,66)
+  --nav-menu-item-background-color: rgba(77, 72, 73,0.8)
+  --nav-menu-item-font-color: #f9f9f9
+  --nav-menu-item-hover-background-color: #cdd0ce
+  --nav-menu-item-hover-font-color: #4d4849
+.nav-fixed
+  #menu-container
+    top: -110px
+    transition: all 0.5s
+  &.nav-visible
+    #menu-container
+      top: -60px
+      transition: all 0.5s
+.menu-container
+  background: transparent
+  position: fixed
+  z-index: 90
+  top: -60px
+  left: 0
+  height: auto
+  width: 100vw
+  transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+  &.active-menu-bar
+    top 0px !important
+    transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+    button.active-button
+      background var(--nav-active-button-color) !important
+  .menu-item
+    background: var(--nav-menu-background-color)
+    height: 60px
+    width 100%
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 16px
+    &::-webkit-scrollbar
+      display: none
+    .menu-item-main
+      font-size: 16px !important;
+      display: inline-flex;
+      color: var(--nav-menu-item-font-color)
+      background: var(--nav-menu-item-background-color)
+      width: auto
+      min-width: 100px;
+      height: 50px;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      margin: 5px 5px;
+      clip-path: polygon(3px 0, calc(50% - 5px) 0,50% 0px,calc(50% + 5px) 0 ,calc(100% - 3px) 0, 100% 3px,100% calc(50% - 5px), 100% 50%,100% calc(50% + 5px), 100% calc(100% - 3px), calc(100% - 3px) 100%,calc(50% + 5px) 100%,50% 100%,calc(50% - 5px) 100%,3px 100%, 0 calc(100% - 3px), 0 calc(50% + 5px), 0px 50%,0 calc(50% - 5px),0 3px);
+      transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+      a
+        color: var(--nav-menu-item-font-color)
+      &:hover
+        color: var(--nav-menu-item-hover-font-color)
+        background: var(--nav-menu-item-hover-background-color)
+        clip-path: polygon(3px 0, calc(50% - 5px) 0,50% 8px,calc(50% + 5px) 0 ,calc(100% - 3px) 0, 100% 3px,100% calc(50% - 5px), calc(100% - 8px) 50%,100% calc(50% + 5px), 100% calc(100% - 3px), calc(100% - 3px) 100%,calc(50% + 5px) 100%,50% calc(100% - 8px),calc(50% - 5px) 100%,3px 100%, 0 calc(100% - 3px), 0 calc(50% + 5px), 8px 50%,0 calc(50% - 5px),0 3px);
+        transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+        a
+          color: var(--nav-menu-item-hover-font-color)
+        .menu-item-parent
+          width: 0
+          opacity 0
+          color: var(--nav-menu-item-hover-font-color)
+          background: var(--nav-menu-item-hover-background-color)
+          pointer-events: none;
+          transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+        .menu-item-child
+          color: var(--nav-menu-item-font-color)
+          background: var(--nav-menu-item-background-color)
+          width: 100px;
+          opacity 1
+          pointer-events: inherit;
+          transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+      &.has-child
+        &:hover
+          background: var(--nav-menu-item-background-color) !important
+      .menu-item-parent
+        color: var(--nav-menu-item-font-color)
+        background: var(--nav-menu-item-background-color)
+        opacity: 1
+        pointer-events: inherit
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width 100px
+        height: 50px;
+        transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+        a
+          color: var(--nav-menu-item-font-color)
+      .menu-item-child
+        color: var(--nav-menu-item-font-color)
+        background: var(--nav-menu-item-background-color)
+        opacity: 0
+        pointer-events: none
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width 0
+        height: 50px;
+        transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17)
+        a
+          color: var(--nav-menu-item-font-color)
+        &:hover
+          color: var(--nav-menu-item-font-color)
+          background: var(--nav-menu-item-hover-background-color)
+          a
+            color: var(--nav-menu-item-hover-font-color)
+
+
+
+  .top-bar
+    background: var(--nav-bar-background-color);
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius 0 0 10px 10px
+    .message-container
+      display: flex;
+      flex-wrap: nowrap;
+      height: 50px;
+      width: 100%;
+      align-items: center;
+      flex-direction: row;
+      .message-item
+        display: inline-flex
+        justify-content: center
+        height: 50px
+        align-items: center;
+      .message-weather
+        width 25%
+        .s-sticker-tmp.module
+          color: var(--nav-font-color) !important;
+          font-family: 'ZhuZiAYuanJWD' !important;
+        .s-sticker-city.module
+          color: var(--nav-font-color) !important;
+          font-family: 'ZhuZiAYuanJWD' !important;
+      .message-date
+        width 50%
+        .message-date-box
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width 50%
+          height: 50px
+          position absolute
+          background transparent
+          transform rotateX(0deg)
+          transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17);
+          opacity 1
+          font-family: 'UnidreamLED','ZhuZiAYuanJWD';
+          font-size: 20px;
+        .message-title-box
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width 50%
+          height: 50px
+          position absolute
+          background transparent
+          transform rotateX(-180deg)
+          transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17);
+          opacity 0
+          font-family: 'ZhuZiAYuanJWD';
+          font-size: 20px;
+          a
+            color: var(--nav-font-color)
+            &:hover
+              color: var(--nav-font-hover-color)
+        &:hover
+          .message-date-box
+            transform rotateX(180deg)
+            opacity 0
+            transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17);
+          .message-title-box
+            transform rotateX(0deg)
+            opacity 1
+            transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17);
+      .message-function
+        justify-content: center;
+        width 25%
+        a
+          display: flex;
+          align-items: center;
+        #toggle-menu
+          display none
+  button.active-button
+    background: var(--nav-button-color);
+    width: 70px;
+    height: 10px;
+    border-radius: 1px;
+    margin: 0px auto;
+    border-bottom: 3px solid var(--nav-bar-background-color);
+    border-top: 3px solid var(--nav-bar-background-color);
+    border-left: 10px solid var(--nav-bar-background-color);
+    border-right: 10px solid var(--nav-bar-background-color);
+    transform: perspective(0.5em) rotateX(-5deg);
+    left: calc(50% - 35px);
+    position: absolute;
+    &:hover
+      background var(--nav-active-button-color) !important
+@media screen and (max-width: 768px)
+  .menu-container
+    .top-bar
+      .message-container
+        .message-weather
+          .s-sticker-tmp.module
+            display none !important
+          .s-sticker-city.module
+            display none !important;
+if hexo-config('mobile_menu')
+  @media screen and (max-width: 768px)
+    .menu-container
+      .top-bar
+        .message-container
+          .message-function
+            #toggle-menu
+              display block !important

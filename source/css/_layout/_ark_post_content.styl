@@ -1,0 +1,61 @@
+//default color:
+:root
+  --ark-left-border-color: #818181
+  --ark-right-border-color: #f58b49
+  --ark-container-background: rgba(220,220,220,0.9)
+
+[data-theme="dark"]
+  --ark-left-border-color: #37708f
+  --ark-right-border-color: #1849a0
+  --ark-container-background: rgba(60,60,60,0.7)
+
+ark_border()
+  position relative
+  padding: 45px 15px 45px 15px!important
+  background: transparent
+  &::before
+    content: ""
+    z-index: -1
+    background: var(--ark-left-border-color)
+    height: 100%
+    width: 60%
+    position: absolute
+    left: 0
+    top: 0
+    clip-path: polygon(calc(100% - 1px) 27px, 100% 24px, calc(100% - 30px) 24px, calc(100% - 30px) 22px, calc(100% - 45px) 12px, calc(100% - 140px) 12px, calc(100% - 127px) 22px, calc(100% - 30px) 22px, calc(100% - 30px) 24px, calc(100% - 130px) 24px, calc(100% - 143px) 12px, 39px 12px, 0 51px, 0 calc(100% - 51px), 39px calc(100% - 12px), calc(100% - 143px) calc(100% - 12px), calc(100% - 130px) calc(100% - 24px), calc(100% - 1px) calc(100% - 24px), 100% calc(100% - 27px), calc(100% - 30px) calc(100% - 27px), calc(100% - 30px) calc(100% - 22px), calc(100% - 45px) calc(100% - 12px), calc(100% - 140px) calc(100% - 12px), calc(100% - 127px) calc(100% - 22px), calc(100% - 30px) calc(100% - 22px), calc(100% - 30px) calc(100% - 27px), calc(100% - 132px) calc(100% - 27px), calc(100% - 145px) calc(100% - 15px), 41px calc(100% - 15px), 3px calc(100% - 54px), 3px 54px, 41px 15px, calc(100% - 145px) 15px, calc(100% - 132px) 27px)
+  &::after
+    content: ""
+    z-index: -1
+    background: var(--ark-right-border-color)
+    height: 100%
+    width: 40%
+    position: absolute
+    right: 0
+    top: 0
+    clip-path: polygon(0 0, 40px 23px, calc(100% - 39px) 23px,100% 51px,100% calc(100% - 51px),calc(100% - 39px) calc(100% - 23px),40px calc(100% - 23px),0 100%,0 calc(100% - 5px),40px calc(100% - 27px),calc(100% - 41px) calc(100% - 27px),calc(100% - 5px) calc(100% - 53px),calc(100% - 5px) 53px,calc(100% - 41px) 27px,42px 27px,0 5px)
+ark_container()
+  background: var(--ark-container-background)
+  padding: 30px 15px
+  clip-path: polygon(15px 15px,calc(50% - 60px) 15px,calc(50% - 50px) 0,calc(50% + 50px) 0,calc(50% + 60px) 15px,calc(100% - 15px) 15px,100% 30px,100% calc(100% - 30px),calc(100% - 15px) calc(100% - 15px),calc(50% + 60px) calc(100% - 15px),calc(50% + 50px) 100%,calc(50% - 50px) 100%,calc(50% - 60px) calc(100% - 15px),15px calc(100% - 15px),0 calc(100% - 30px),0 30px)
+//应用样式
+#content-inner
+  #post
+    ark_border()
+  #page
+    ark_border()
+  #tag
+    ark_border()
+  #category
+    ark_border()
+
+  #article-container
+    ark_container()
+  #post-comment
+    ark_container()
+  .tag_share
+    text-align: center
+    ark_container()
+  .tag-cloud-list
+    ark_container()
+  .category-lists
+    ark_container()

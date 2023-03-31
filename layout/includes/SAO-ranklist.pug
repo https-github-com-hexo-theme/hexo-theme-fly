@@ -1,0 +1,50 @@
+#SAO-ranklist
+  .ranklist-title= theme.SAO_ranklist.title
+  .ranklist-main
+    .master-item
+      .master-rank
+        i.fa.fa-plus
+      .master-user
+        a(alt='' href=url_for(theme.SAO_ranklist.master.link)  data-title=theme.SAO_ranklist.master.title)= theme.SAO_ranklist.master.name
+          if !(theme.SAO_ranklist.master.title)
+            .rank-reward
+              if theme.reward.enable
+                each QR_code in theme.reward.QR_code
+                  .reward-img
+                    img(alt='' src=url_for(QR_code.img))
+                    a.reward-text(alt='' href=url_for(QR_code.link))= QR_code.text
+      .master-data
+        .master-HP
+          - var hpmasterMAX = (Number(theme.SAO_ranklist.master.LV) * Number(theme.SAO_ranklist.stepLV) + Number(theme.SAO_ranklist.baseHP))
+          - var hpmasterNow = Math.round((Number(hpmasterMAX) * Number(theme.SAO_ranklist.master.HP) / 100))
+          - var hpmasterFill = theme.SAO_ranklist.master.HP + '%'
+          .HP-fill(style=`width:`+ hpmasterFill )
+            .HP-fill-in
+              span= hpmasterFill
+      .master-level
+        span= hpmasterNow
+        span |
+        span= hpmasterMAX
+        span= `lv.`+ theme.SAO_ranklist.master.LV
+    if theme.SAO_ranklist.partner
+      each partner in theme.SAO_ranklist.partner
+        .partner-item
+          .partner-rank
+          .partner-user
+            - var rewardTitle = '感谢' + partner.name + '打赏的￥' + partner.reward
+            a(alt='' href=url_for(partner.link) data-title=rewardTitle)= partner.name
+          .partner-data
+            .partner-HP
+              - var hpMAX = (Number(partner.LV) * Number(theme.SAO_ranklist.stepLV) + Number(theme.SAO_ranklist.baseHP))
+              - var hpNow = Math.round(Number(hpMAX) * Number(partner.reward) / Number(partner.LV))
+              - var hpFill = ( hpNow / hpMAX * 100 ).toFixed(2) + '%'
+              .HP-fill(style=`width:`+ hpFill)
+                .HP-fill-in
+                  span= hpFill
+          .partner-level
+            span= hpNow
+            span |
+            span= hpMAX
+            span= `lv.`+ partner.LV
+
+script(async src= url_for(theme.CDN.SAO_ranklist))

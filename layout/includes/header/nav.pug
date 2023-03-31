@@ -1,0 +1,92 @@
+//- nav#nav
+//-   span#blog-info
+//-     a(href=url_for('/') title=config.title)
+//-       if theme.nav.logo
+//-         img.site-icon(src=url_for(theme.nav.logo))
+//-       if theme.nav.display_title
+//-         span.site-name=config.title
+
+//-   #menus
+//-     if (theme.algolia_search.enable || theme.local_search.enable || theme.docsearch.enable)
+//-       #search-button
+//-         a.site-page.social-icon.search(href="javascript:void(0);")
+//-           i.fas.fa-search.fa-fw
+//-           span=' '+_p('search.title')
+//-     !=partial('includes/header/menu_item', {}, {cache: true})
+
+//-     #toggle-menu
+//-       a.site-page(href="javascript:void(0);")
+//-         i.fas.fa-bars.fa-fw
+#menu-container.menu-container
+  .menu-item
+    each value, label in theme.menu
+      if typeof value !== 'object'
+        .menu-item-main
+          a.site-page.faa-parent.animated-hover(href=url_for(trim(value.split('||')[0])))
+            if value.split('||')[1]
+              - var icon_value = trim(value.split('||')[1])
+              - var anima_value = value.split('||')[2] ? trim(value.split('||')[2]) : 'faa-tada'
+              if icon_value.substring(0,2)=="fa"
+                i.fa-fw(class=icon_value + ' ' + anima_value)
+              else if icon_value.substring(0,4)=="icon"
+                svg.icon(aria-hidden="true" class=anima_value)
+                  use(xlink:href=`#`+ icon_value)
+            span=' '+label
+      else
+        .menu-item-main.has-child
+          .menu-item-parent
+            a.site-page.faa-parent.animated-hover(href='javascript:void(0);')
+              if label.split('||')[1]
+                - var icon_label = trim(label.split('||')[1])
+                - var anima_label = label.split('||')[2] ? trim(label.split('||')[2]) : 'faa-tada'
+                if icon_label.substring(0,2)=="fa"
+                  i.fa-fw(class=icon_label + ' ' + anima_label)
+                else if icon_label.substring(0,4)=="icon"
+                  svg.icon(aria-hidden="true" class=anima_label)
+                    use(xlink:href=`#`+ icon_label)
+              span=' '+ trim(label.split('||')[0])
+          each val,lab in value
+            .menu-item-child
+              a.faa-parent.animated-hover.site-page.child(href=url_for(trim(val.split('||')[0])))
+                if val.split('||')[1]
+                  - var icon_val = trim(val.split('||')[1])
+                  - var anima_val = val.split('||')[2] ? trim(val.split('||')[2]) : 'faa-tada'
+                  if icon_val.substring(0,2)=="fa"
+                    i.fa-fw(class=icon_val + ' ' + anima_val)
+                  else if icon_val.substring(0,4)=="icon"
+                    svg.icon(aria-hidden="true" class=anima_val)
+                      use(xlink:href=`#`+ icon_val)
+                span=' '+ lab
+  .top-bar
+    .message-container
+      .message-item.message-weather(onclick='btf.scrollToDest(0, 500)')
+        #he-plugin-simple.message-weather-box
+      .message-item.message-date(onclick='Navvisible()')
+        #message-date-box.message-date-box
+        - var pagedescr = page.description ? page.description : '欢迎光临糖果屋，愿你有愉快的一天'
+        - var subtitle = page.subtitle ? page.subtitle : page.title
+        if is_post()
+          #message-title-box.message-title-box
+            a#site-name(title=pagedescr) #[=subtitle]
+        else if is_page()
+          #message-title-box.message-title-box
+            a#site-name(title=pagedescr) #[=subtitle]
+        else
+          #message-title-box.message-title-box
+            a#site-name(title=pagedescr) #[=config.title]
+      .message-item.message-function
+        if (theme.algolia_search.enable || theme.local_search.enable)
+          #search-button
+            a.site-page.social-icon.search.faa-parent.animated-hover
+              svg.faa-tada.icon(style="height:25px;width:25px" aria-hidden="true")
+                use(xlink:href='#icon-search-01')
+              span=' '+_p('search.title')
+        a.icon-V.hidden.faa-parent.animated-hover(onclick='switchNightMode()',  title=_p('rightside.night_mode_title'))
+          svg.faa-tada(width='25', height='25', viewBox='0 0 1024 1024')
+            use#modeicon(xlink:href='#icon-moon')
+        #toggle-menu
+          a.site-page.faa-parent.animated-hover
+            svg.faa-tada.icon(style="height:25px;width:25px" aria-hidden="true")
+              use(xlink:href='#icon-multi-window-01')
+  button.active-button(onclick='Navvisible()')
+

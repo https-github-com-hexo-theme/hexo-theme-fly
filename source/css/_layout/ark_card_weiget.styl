@@ -1,0 +1,36 @@
+//default color:
+:root
+  --card-widget-background: rgba(255, 255, 255, 0.9) //左下角能量条配色
+  --card-widget-charge: linear-gradient(to top, transparent, #ffb531) //侧栏卡片背景配色
+
+[data-theme="dark"]
+  --card-widget-background: rgba(35,35,35,0.5)
+  --card-widget-charge: linear-gradient(to top, transparent, #4db7d5)
+
+.card-widget
+  background var(--card-widget-background)!important
+  &:not(.card-info)
+    padding: 0px 25px 25px 25px!important
+    //一口气切割出整个卡片。
+    clip-path: polygon(25px 0, calc(100% - 75px) 0, calc(100% - 50px) 25px, 100% 25px, 100% 40px, 50px 40px, 40px 45px, 100% 45px, 100% 45%, calc(100% - 15px) calc(45% + 25px), calc(100% - 15px) calc(100% - 75px), 100% calc(100% - 50px), 100% 100%, 25px 100%, 12.5px calc(100% - 12.5px),  12.5px calc(100% - 20px) , 0px calc(100% - 32.5px),0px calc(100% - 52.5px),12.5px calc(100% - 40px), 12.5px calc(100% - 50px) , 0px calc(100% - 62.5px),0px calc(100% - 82.5px),12.5px calc(100% - 70px),12.5px calc(100% - 80px) , 0px calc(100% - 92.5px),0px calc(100% - 112.5px),12.5px calc(100% - 100px),12.5px calc(100% - 112.5px), 0 calc(100% - 125px), 0 25px)
+    .item-headline
+      margin: 5px 0px 0px 5px
+    &::before //左下角的能量条
+      content: ""
+      height: 112.5px
+      width: 12.5px
+      background: var(--card-widget-charge)
+      display block
+      position: absolute
+      left: 0px
+      bottom: 0px
+    .aside-list
+      .aside-list-item
+        a.thumbnail
+          img
+            clip-path: polygon(50% 0%,95.5% 25%,95.5% 75%,50% 100%,4.5% 75%,4.5% 25%) //头像框六边形切割
+  //目录百分比兼容性适配
+  &#card-toc
+    .toc-percentage
+      margin: -15px 70px -15px 0px !important
+      font-size: 26px !important

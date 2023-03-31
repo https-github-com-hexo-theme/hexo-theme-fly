@@ -1,0 +1,9 @@
+extends includes/layout.pug
+
+block content
+  include ./includes/mixins/post-ui.pug
+  #recent-posts.recent-posts
+    if theme.swiperBar.enable
+       !=partial('includes/custom/ark_swiperBar', {}, {cache: true})
+    +postUI
+    include includes/pagination.pug

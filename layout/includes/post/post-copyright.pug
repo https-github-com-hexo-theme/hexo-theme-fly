@@ -1,0 +1,23 @@
+if theme.post_copyright.enable && page.copyright !== false
+  - let author = page.copyright_author || config.author
+  - let authorHref = page.copyright_author_href || theme.post_copyright.author_href || config.url
+  - let url = page.copyright_url || page.permalink
+  - let info = page.copyright_info || _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
+  .post-copyright
+    .post-copyright-title
+      - let original_title='本文为'+page.original+'文章，'+(page.original==='原创'?'注意版权协议':'版权归原作者所有')
+      span.post-copyright-original(title=original_title) #[=page.original]
+      span.post-copyright-title-text #[=page.title]
+    .post-copyright-link
+      a.post-copyright-url(href=url_for(url))= theme.post_copyright.decode ? decodeURI(url) : url
+    .post-copyright-license
+      span.post-copyright-info
+        if page.original==='原创'
+            | 本文是#[=page.original]文章，采用
+            a(href='https://creativecommons.org/licenses/by-nc-sa/4.0/', rel='external nofollow noreferrer', target='_blank') CC BY-NC-SA 4.0
+            |  协议，完整转载请注明来自
+            a(href=url_for(authorHref), target='_blank')= author
+        else
+            | 本文是#[=page.original]文章，版权归原作者所有。建议访问原文，转载本文请联系作者
+    svg.icon.post-copyright-decoration(aria-hidden='true')
+        use(href='#icon-menu-zizhanbaowei')
