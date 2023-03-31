@@ -25,7 +25,7 @@ hexo init
 在hexo项目根目录下执行操作clone主题
 
 ``` sh
-git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
+git clone -b master https://github.com/https-github-com-hexo-theme/hexo-theme-fly.git themes/fly
 ```
 
 如果沒有 pug 以及 stylus 的渲染器，还需要下载，否则在项目运行时会报错：
