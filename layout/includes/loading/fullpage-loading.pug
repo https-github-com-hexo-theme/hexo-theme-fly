@@ -27,16 +27,48 @@ if theme.preloader.enable
     default
       include ./load_style/default.pug
 
+//- script.
+//-   const preloader = {
+//-     endLoading: () => {
+//-       document.body.style.overflow = 'auto';
+//-       document.getElementById('loading-box').classList.add("loaded")
+//-     },
+//-     initLoading: () => {
+//-       document.body.style.overflow = '';
+//-       document.getElementById('loading-box').classList.remove("loaded")
+
+//-     }
+//-   }
+//-   window.addEventListener('load',()=> { preloader.endLoading() })
+
+//-   if (!{theme.pjax && theme.pjax.enable}) {
+//-     document.addEventListener('pjax:send', () => { preloader.initLoading() })
+//-     document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+//-   }
 script.
+  const loadingPercentage = document.getElementById("Ark-loading-progress");
+  let loadingPercentageTimer = setInterval(function() {
+    var progressBar = document.querySelector(".pace-progress");
+    if (!progressBar) return
+    var currentValue = progressBar.getAttribute("data-progress-text");
+    if (currentValue !== loadingPercentage.textContent) {
+      loadingPercentage.textContent = currentValue;
+      if (currentValue === "100%") {
+        clearInterval(loadingPercentageTimer);
+        document.getElementById("ark-cab-box").classList.add("arkend");
+        document.getElementById("ark-cab-box").classList.add("arksink");
+      }
+    }
+  }, 100);
   const preloader = {
     endLoading: () => {
       document.body.style.overflow = 'auto';
+      document.getElementById('loading-box').classList.add("arkend")
       document.getElementById('loading-box').classList.add("loaded")
     },
     initLoading: () => {
       document.body.style.overflow = '';
       document.getElementById('loading-box').classList.remove("loaded")
-
     }
   }
   window.addEventListener('load',()=> { preloader.endLoading() })

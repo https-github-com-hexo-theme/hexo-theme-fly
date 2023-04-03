@@ -35,7 +35,7 @@ header#page-header(class=`${isHomeClass+isFixedClass}` style=bg_img)
   !=partial('includes/header/nav', {}, {cache: true})
   if top_img !== false
     if is_post()
-      include ./post-info.pug
+      //- include ./post-info.pug
     else if is_home()
       #site-info
         h1#site-title

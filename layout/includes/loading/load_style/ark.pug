@@ -18,4 +18,37 @@
   #ark-loading
     .ark-loading-border
       .ark-loading-container#Ark-loading-progress
-        //- .ark-loading-tip
+        //- .pace.pace-inactive
+        //-   .pace-progress(data-progress-text='0%', data-progress='99', style='transform: translate3d(100%, 0px, 0px);')
+        //-     .pace-progress-inner
+      //-   .pace-activity
+      //- .ark-loading-tip
+//- script.
+//-   const loadingPercentage = document.getElementById("Ark-loading-progress");
+//-   let loadingPercentageTimer = setInterval(function() {
+//-     var progressBar = document.querySelector(".pace-progress");
+//-     if (!progressBar) return
+//-     var currentValue = progressBar.getAttribute("data-progress-text");
+//-     if (currentValue !== loadingPercentage.textContent) {
+//-       loadingPercentage.textContent = currentValue;
+//-       if (currentValue === "100%") {
+//-         clearInterval(loadingPercentageTimer);
+//-       }
+//-     }
+//-   }, 100);
+//-   const preloader = {
+//-     endLoading: () => {
+//-       document.body.style.overflow = 'auto';
+//-       document.getElementById('loading-box').classList.add("loaded")
+//-     },
+//-     initLoading: () => {
+//-       document.body.style.overflow = '';
+//-       document.getElementById('loading-box').classList.remove("loaded")
+//-     }
+//-   }
+//-   window.addEventListener('load',()=> { preloader.endLoading() })
+
+//-   if (!{theme.pjax && theme.pjax.enable}) {
+//-     document.addEventListener('pjax:send', () => { preloader.initLoading() })
+//-     document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+//-   }
